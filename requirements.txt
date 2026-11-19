@@ -2,8 +2,13 @@ matplotlib
 numpy
 pandas
 scikit-learn
+ipykernel
 scipy
 seaborn
 shiny
 geopandas
 contextily
+geoplot
+Jinja2
+requirements
+statsmodels
