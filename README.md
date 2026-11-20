@@ -35,6 +35,12 @@ A regression analysis was run (with the same variables), excluding the city of L
 
 ## Analysis plan
 
+For the predictive analysis, a regression model was identified as the strongest option. This is due to the nature of the data and the purpose for the model implementation: To find a) whether green space (as an indicator for environmental health) has an effect on human health; and b) to attempt to quantify the effect observed (if the model has inaccurate predictions it indicates a non causal relation).
+
+The model will be tested using the 'leave one out' method due to the small number of data points (32 including the City of London). The model will predict the health of each borough from the data on the other boroughs.
+
+Alternative models were considered but found incompatible with either the data or the research question. The primary alternative modelling method considered was a Classifier, however, the data is continious and a Classifier requires discrete data to *classify* the data as. While the data could be transformed to be discrete (e.g. a borough is healthy or unhealthy) it would be reductive due to what the data actually represents. The health scores and wealth scores are calculated relative to the health or wealth of other areas in the sample (the data is calculated across all of England but was reduced to just Greater London boroughs) and the most deprived locations are given a score of 1. Hypothetically, if England had very little deprivation, a small difference from the least deprived area could result in a score of 1 so a binary 'healthy' or 'unhealthy' classification cannot reliably be ascertained.
+
 ## How to run this
 
 From the repository root: create and activate a virtual environment, then
