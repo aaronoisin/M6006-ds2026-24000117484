@@ -1,9 +1,11 @@
 from shiny import ui, render, App
+from shinywidgets import output_widget, render_widget
 import numpy as np
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
 import statsmodels.api as sm
+import plotly.express as px
 
 
 # UI ----------------
@@ -41,7 +43,7 @@ datasets = {
 # -------
 app_ui = ui.page_fluid(
     ui.card(
-        ui.card_header('The Graph!'),
+        ui.card_header('The Pair Plot with Regression line!'),
         ui.output_plot('plot')
     ),
     ui.card(
@@ -50,10 +52,16 @@ app_ui = ui.page_fluid(
         ui.input_select('dataset', 'Dataset', choices=options, selected="both"),
         #title='Choose Dataset',
     ),
-    ui.card(
-        ui.card_header('Regression Analysis!'),
-        ui.output_ui('regression'),
-
+    ui.layout_columns(
+        ui.card(
+            ui.card_header('The 3D Scatterplot!'),
+            output_widget('plot2')
+        ),
+        ui.card(
+            ui.card_header('Regression Analysis!'),
+            ui.output_ui('regression'),
+        ),
+        col_widths=[7,5]
 
 ))
 # -------
@@ -107,6 +115,7 @@ def make_plot(data_set, label):
 
     return plot
 
+
 def reg(data_set):
 
     formula_string = "Q('health_score') ~ Q('percent_green') + Q('wealth_score')"
@@ -125,6 +134,14 @@ def server(input, output, session):
     def plot():
         choice = input.dataset()
         return make_plot(datasets[choice], options[choice])
+
+    @render_widget
+    def plot2():
+        choice = input.dataset()
+        df = datasets[choice]
+        fig = px.scatter_3d(df, x='wealth_score', y='percent_green', z='health_score',
+              hover_data='borough', title='Scatter Plot of Health against Green Spaces and Wealth', opacity=0.4)
+        return fig
     
     @render.ui
     def regression():
