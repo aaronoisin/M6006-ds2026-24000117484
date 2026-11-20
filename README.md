@@ -5,9 +5,6 @@ How does a healthy natural environment (through the amount of green space) relat
 - **Student ID:** 24000117484
 - **Repository:** M6006-ds2026-24000117484
 
-This project lives in `project/`. The repository is the whole course folder:
-`requirements.txt` and `.gitignore` are at the repository root, and the
-week folders hold the lab notebooks.
 
 ## Research question:
 
@@ -18,6 +15,21 @@ $$\boxed{\text{What Effect does Green Space have on the Health of London Borough
 $$\boxed{\text{Inequality is prevelant in London, not only in economic terms but also environmental inequality (e.g. access to green space) and health inequality (e.g. health outcomes and access to good healthcare). These inequalities are often present in tandem with each other, meaning that those who exist or live in an unequal environment will face barriers at multiple levels meaning the most vulnerable groups and demographics will have compounding inequality}}$$
 
 ## Data
+
+**Green Cover Data:**
+
+The data for the green cover in London Boroughs was sourced from the Greater London AUthority and is available [here](https://data.london.gov.uk/dataset/london-green-and-blue-cover-emqzm). The data is published under the Open Government Licence v3.0 (OGL v3) and is availble for commercial and non commercial use. 
+
+$\boxed{\begin{gathered} 
+\text{Green and blue cover data:}\\ \text{Greater London Authority London Green and Blue Cover (2019).}\\ 
+\text{Contains OS data © Crown copyright and database rights 2019.}\\ 
+\text{Contains Verisk Analytics GeoInformation Group UKMap data.}\\ 
+\text{Licensed under the Open Government Licence v3.0.}
+\end{gathered}}$
+
+**Borough Demographics Data**
+
+The data for the depirvation demographics was sourced from the Office for National Statistics (ONS) and is available [here](https://www.gov.uk/government/statistics/english-indices-of-deprivation-2025). The data is published under the Open Government License V3.0.
 
 Where the data comes from, how to get it, and what licence it is under.
 Put data files in `data/`: that folder is not committed to GitHub, so explain
