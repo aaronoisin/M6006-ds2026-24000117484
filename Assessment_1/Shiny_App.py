@@ -53,7 +53,6 @@ app_ui = ui.page_fluid(
     ui.card(
         ui.card_header('Regression Analysis!'),
         ui.output_ui('regression'),
-        #title='Regression Analysis'
 
 
 ))
