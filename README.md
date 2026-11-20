@@ -18,6 +18,8 @@ The residents of the boroughs are not the only stakeholders, councils, green spa
 
 ## Data
 
+The datasets were chosen as they are likely to have reliable, up to date data as they are from official government census's and reports. The data was also well formatted so required minimal preprocessing and cleaning beyond merging the different datasets.
+
 **Green Cover Data:**
 
 The data for the green cover in London Boroughs was sourced from the Greater London AUthority and is available [here (green_cover_borough file)](https://data.london.gov.uk/dataset/london-green-and-blue-cover-emqzm). The data is published under the Open Government Licence v3.0 (OGL v3) and is availble for commercial and non commercial use. 
@@ -53,7 +55,7 @@ As the data is sourced from the Office for National Statistics (ONS), the data r
 
 .describe() and .corr() were used to describe the data (.describe() is a literal quantitative description, using means and counts and .corr() was used to identify the strength of associations). This analysis showed a high correlation between wealth and health and a moderate correlation between green space and health, other variable relationships had weaker correlations.
 
-I also found that by removing the borough of the City of London, the strength of the correlation between green space and health and also green space and wealth. This is likely due to the smaller size of the area and it's large buildings as it's role as a financial district.
+I also found that by removing the borough of the City of London, the strength of the correlation increased between green space and health and also green space and wealth. This is likely due to the smaller size of the area and it's large buildings as it's role as a financial district.
 
 ### Correlation values:
  With CoL:
@@ -74,7 +76,7 @@ A pairplot was generated showing the relation between the two chosen independent
 
 A regression analysis was run (with the same variables), excluding the city of London, to identify statistical significance of the relationships and to identify how much variance in the dependent variable the independent variables can explain.
 
-A fitted regression model was used on the data (excluding the City of London) using green spaces as a dependent variable and wealth and health as the independent variables. The $R^2$ value was 0.65, 65% of the variance in health could be explained by variations in green spaces or wealth. The P-values were both under 0.05, showing statistical significance in the relationship when the other variable is held constant.
+A fitted regression model was used on the data (excluding the City of London) using health as a dependent variable and wealth and green spaces as the independent variables. The $R^2$ value was 0.65, 65% of the variance in health could be explained by variations in green spaces or wealth. The P-values were both under 0.05, showing statistical significance in the relationship when the other variable is held constant.
 
 Both the $R^2$ and Adj. $R^2$ are higher when both green space and wealth variables are used, compared to each variable individually. This shows that the combination of the variables have a higher correlation than each one individually.
 
