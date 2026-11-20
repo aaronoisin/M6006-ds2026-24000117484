@@ -1,6 +1,6 @@
 # Health in Nature and People in London Boroughs
 
-How does a healthy natural environment (through the amount of green space) relate to or effect human health in London Boroughs. Is it a primary factor, a minor contributing factor or just a correlating factor
+How does a healthy natural environment (through the amount of green space) relate to or effect human health in London Boroughs. Is it a primary factor, a minor contributing factor or just a correlating factor?
 
 - **Student ID:** 24000117484
 - **Repository:** M6006-ds2026-24000117484
@@ -8,13 +8,13 @@ How does a healthy natural environment (through the amount of green space) relat
 
 ## Research question:
 
-What Effect does Green Space have on the Health of London Borough Residents, How strong is that effect and are there any other factors involved
+What Effect does Green Space have on the Health of London Borough Residents, How strong is that effect and are there any other factors involved?
 
 ## The real-world problem and who it affects
 
 Inequality is prevelant in London, not only in economic terms but also environmental inequality (e.g. access to green space) and health inequality (e.g. health outcomes and access to good healthcare). These inequalities are often present in tandem with each other, meaning that those who exist or live in an unequal environment will face barriers at multiple levels meaning the most vulnerable groups and demographics will have compounding inequality.
 
-The residents of the boroughs are not the only stakeholders, councils, green space management and health organisations are also stakeholders as they all have interest and influence over green spaces or health outcomes (or both)
+The residents of the boroughs are not the only stakeholders, councils, green space management and health organisations are also stakeholders as they all have interest and influence over green spaces or health outcomes (or both).
 
 ## Data
 
@@ -35,6 +35,19 @@ The data for the depirvation demographics was sourced from the Office for Nation
 
 
 ## Cleaning and preprocessing
+
+### Variable Justification
+
+The variables used included two that are present in the research question (health and green spaces) and a third option (wealth) that was included based on the strength of the correlation between itself and the outcome variable (health).
+
+**The green cover variable** quantifies the amount of green space in a borough as a percentage of the total borough area. There were other variables that quantified the amount of green space in the borough however a percentage allows the figure to represent the value proportional to the total size of the borough, meaning scaling the value was unecessary for better accuracy and allowed a step to be skipped
+
+**The health variable** is a population weighted average for a health deprivation and disability. A score of 1 is the most deprived, this method means uniform deprivation (i.e. an area that has consistently high levels of deprivation across it's entire area) will score higher than areas with a less consistent level of deprivation/higher diversity in levels of deprivation. The value was inverted in the analysis as a higher value reflecting lower average health is unintuitive.
+
+**The wealth variable** is a population weighted average for a income deprivation and inequality. A score of 1 is the most deprived, this method means uniform deprivation (i.e. an area that has consistently high levels of deprivation across it's entire area) will score higher than areas with a less consistent level of deprivation/higher diversity in levels of deprivation. The value was inverted in the analysis as a higher value reflecting lower average wealth is unintuitive.
+
+----
+### Cleaning
 
 As the data is sourced from the Office for National Statistics (ONS), the data requires minial preprocessing. Three different datasets were sourced and merged, with columns irrelevant to the research question being dropped and Null values being checked for. A function for eliminating whitespace and capitalisation was run on the column names to avoid uneccesary complications later in the statistical analsysis. 
 
@@ -63,20 +76,32 @@ A regression analysis was run (with the same variables), excluding the city of L
 
 A fitted regression model was used on the data (excluding the City of London) using green spaces as a dependent variable and wealth and health as the independent variables. The $R^2$ value was 0.65, 65% of the variance in health could be explained by variations in green spaces or wealth. The P-values were both under 0.05, showing statistical significance in the relationship when the other variable is held constant.
 
-Green space (% of borough):  $p\leq 0.0059235244601048564$
+Both the $R^2$ and Adj. $R^2$ are higher when both green space and wealth variables are used, compared to each variable individually. This shows that the combination of the variables have a higher correlation than each one individually.
 
-Wealth:  $p\leq 0.00016753929587310002$
+### Table of Regression Analysis values:
+
+|Data|Value|
+|---|---|
+|G. Cover|$p \leq 0.0059235244601048564$|
+|G. Cover|$R^2 =  0.4139049006562612$|
+|G. Cover|$\text{Adj. } R^2 =  0.3936947248168219$|
+|Wealth|$p\leq 0.00016753929587310002$|
+|Wealth|$R^2 =  0.5386547697283542$|
+|Wealth|$\text{Adj. } R^2 =  0.5227463135120906$|
+
 
 ## Analysis plan
 
 For the predictive analysis, a regression model was identified as the strongest option. This is due to the nature of the data and the purpose for the model implementation: To find a) whether green space (as an indicator for environmental health) has an effect on human health; and b) to attempt to quantify the strength and direction of the association observed. 
 
 
-The model will be tested using the 'leave one out' method due to the small number of data points (32 including the City of London). The model will predict the health of each borough from the data on the other boroughs.
+The model will be tested using the 'leave one out' method due to the small number of data points (33 including the City of London). The model will predict the health of each borough from the data on the other boroughs.
 
-Alternative models were considered but found incompatible with either the data or the research question. The primary alternative modelling method considered was a Classifier, however, the data is continious and a Classifier requires discrete data to *classify* the data as. While the data could be transformed to be discrete (e.g. a borough is healthy or unhealthy) it would be reductive due to what the data actually represents. The health scores and wealth scores are calculated relative to the health or wealth of other areas in the sample (the data is calculated across all of England but was reduced to just Greater London boroughs) and the most deprived locations are given a score of 1. Hypothetically, if England had very little deprivation, a small difference from the least deprived area could result in a score of 1 so a binary 'healthy' or 'unhealthy' classification cannot reliably be ascertained.
+Alternative models were considered but found incompatible with either the data or the research question. The primary alternative modelling method considered was a Classifier, however, the data is continious and a Classifier requires discrete target variables to *classify* the data as. While the data could be transformed to be discrete (e.g. a borough is healthy or unhealthy) it would be reductive due to what the data actually represents. The health scores and wealth scores are calculated relative to the health or wealth of other areas in the sample (the data is calculated across all of England but was reduced to just Greater London boroughs) and the most deprived locations are given a score of 1. Hypothetically, if England had very little deprivation, a small difference from the least deprived area could result in a score of 1 so a binary 'healthy' or 'unhealthy' classification cannot reliably be ascertained.
 
-Another key weakness that would need to be considered (both in terms of disqualifying classification as a method but also for regression) is that the health wealth indicators are based on England rather than relative to London.
+Another key weakness that would need to be considered (both in terms of disqualifying classification as a method but also for regression) is that the health wealth indicators are based on England rather than relative to London. Other methods were not relevant for the data types and problem statement.
+
+For evaluating the model, the Root Mean Squared Error will be calculated. This has the advantage of penalising big errors (as n is small, the model is unlikely to have high precision) and being in the same scale (as it is squared and square rooted). As the City of London will be excluded as the most obvious outlier (as seen from the plots) we do not need to worry as much about sensitivty to outlier data. If the City of London is included a Mean Absolute Error will be calculated as well as it has higher resilience to outliers. A cross validated $R^2$ will also be calculated to compare the effectiveness of the model's predictions against predictions of the mean.
 
 ## How to run this
 
